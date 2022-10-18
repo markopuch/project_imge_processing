@@ -1,0 +1,18 @@
+version: '3.0'
+services:
+  convtiff:
+      container name: convtiff
+      build:
+        context:
+        dockerfile: Dockerfile
+      privileged: true
+      environment:
+        - PYTHONUNBUFFERED= no_buffer
+        - PYTHONDONTWRITEBYTECODE= 1
+        - DISPLAY=$DISPLAY
+        - log-verbose= 4
+      volumes:
+        - $HOME/.authority:/root/.Xauthority
+        - /tmp/.X11-unix/:/tmp/.X11-unix
+        
+      command: 'python3 main.ipynb'
